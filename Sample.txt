@@ -1,0 +1,658 @@
+Dan Fincher
+
+
+Sample output:
+
+
+--------
+TCP:
+--------
+
+Server Side:
+User input: java ServerTcp 3000
+Console result:
+
+/--------------------------\
+     Server Initialized
+/--------------------------\
+
+
+
+
+
+
+Client Side:
+User input: java RemoteBankTcp localhost:3000 Kevin CHUMBO deposit 12
+Console result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+Welcome Kevin
+
+Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+
+
+
+
+
+
+
+
+Server Side: (Debug Mode)
+User input: java ServerTcp 3001 -d
+Console result:
+
+/--------------------------\
+     Server Initialized
+/--------------------------\
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+  DEBUG MODE INITIATED
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+
+
+
+
+Creating Server Socket...
+Server socket created successfully...
+Now listening for a client...
+
+Connected to client successfully...
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is AUTH:
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending authentication response message sent from server to client...
+Random 64 character challenge string is kxsdihpzvwficqobtytrywtahqbpmtkqqjblticgwkekcktpoiptharqdsjpfzlm
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is HASH:Kevin/-369229725
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending hash authentication response message sent from server to client...
+The message body is Kevin/-369229725
+
+/--------------------------\
+Matching user data given from client with server user data...
+/--------------------------\
+
+/--------------------------\
+Computing hash of concatenated data string...
+/--------------------------\
+
+/--------------------------\
+AUTHENTICATION SUCCESS
+/--------------------------\
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is TRANS:deposit/12
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending transaction response message sent from server to client...
+The message body is Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is DONE:
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending transaction complete from server to client...
+
+Closing client socket on server side....
+
+Communication with client ended...
+Destroying socket and data streams...
+Now listening for a new client...
+
+
+
+
+
+
+
+
+Client Side: (Debug Mode)
+User input: java RemoteBankTcp localhost:3001 Kevin CHUMBO deposit 12 -d
+Console result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+  DEBUG MODE INITIATED
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+
+
+
+
+Creating Socket...
+Socket created successfully...
+
+Authenticating user...
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is AUTHRES:kxsdihpzvwficqobtytrywtahqbpmtkqqjblticgwkekcktpoiptharqdsjpfzlm
+
+/--------------------------\
+Computing hash of concatenated data string...
+/--------------------------\
+The string being hashed is KevinCHUMBOkxsdihpzvwficqobtytrywtahqbpmtkqqjblticgwkekcktpoiptharqdsjpfzlm
+The computed hash is -369229725
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending hash and user data to server from client...
+The message is HASH:Kevin/-369229725
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is HASHRES:Welcome Kevin
+
+Received authentication response from server.
+The authentication message is Welcome Kevin
+
+Welcome Kevin
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending transaction request to server...
+The transaction message is TRANS:deposit/12
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is TRANSRES:Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+
+Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending done message to server...
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is DONERES:
+
+
+Closing client socket on client side....
+
+Destroying socket and data streams...
+
+
+
+
+
+
+
+--------
+UDP:
+--------
+
+Server Side:
+User input: java ServerUdp 3002
+Console result:
+
+/--------------------------\
+     Server Initialized
+/--------------------------\
+
+
+
+
+Client Side:
+User input: java RemoteBankTcp localhost:3000 Kevin CHUMBO deposit 12
+Console result:
+
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+Welcome Kevin
+
+Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+
+
+
+
+
+Server Side: (Debug Mode)
+User input: java ServerUdp 3003 -d
+Console result:
+
+
+/--------------------------\
+     Server Initialized
+/--------------------------\
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+  DEBUG MODE INITIATED
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+
+
+
+
+Creating Server Socket...
+Server socket created successfully...
+Now listening for a client...
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is AUTH:
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending authentication response message sent from server to client...
+Random 64 character challenge string is cqmcenomgdafwrvvwrldswmjcaxyodtyddfmwncyxbjajomqezhwrrxqyytbymmg
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is HASH:Kevin/1824722295
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending hash authentication response message sent from server to client...
+The message body is Kevin/1824722295
+
+/--------------------------\
+Matching user data given from client with server user data...
+/--------------------------\
+
+/--------------------------\
+Computing hash of concatenated data string...
+/--------------------------\
+
+/--------------------------\
+AUTHENTICATION SUCCESS
+/--------------------------\
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is TRANS:deposit/12
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending transaction response message sent from server to client...
+The message body is:
+Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+Reading message sent from client to server...
+The message is DONE:
+
+/--------------------------\
+Sending message to client....
+/--------------------------\
+Sending transaction complete from server to client...
+
+Closing client socket on server side....
+
+
+Communication with client ended...
+Now listening for a new client...
+
+/--------------------------\
+Getting message from client....
+/--------------------------\
+
+
+
+
+
+Client Side: (Debug Mode)
+User input: java RemoteBankUdp localhost:3003 Kevin CHUMBO deposit 12 -d
+Console result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+  DEBUG MODE INITIATED
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+
+
+
+
+Creating Socket...
+Socket created successfully...
+
+Authenticating user...
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is AUTHRES:cqmcenomgdafwrvvwrldswmjcaxyodtyddfmwncyxbjajomqezhwrrxqyytbymmg
+
+/--------------------------\
+Computing hash of concatenated data string...
+/--------------------------\
+The string being hashed is KevinCHUMBOcqmcenomgdafwrvvwrldswmjcaxyodtyddfmwncyxbjajomqezhwrrxqyytbymmg
+The computed hash is 1824722295
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending hash and user data to server from client...
+The message is HASH:Kevin/1824722295
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is HASHRES:Welcome Kevin
+
+Received authentication response from server.
+The authentication message is Welcome Kevin
+
+Welcome Kevin
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending transaction request to server...
+The transaction message is TRANS:deposit/12
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is TRANSRES:Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+
+Your deposit of $12.00 was successfully recorded. 
+Your new balance is $12.00
+Thank you for banking with us.
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending done message to server...
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+Reading message sent from server to client...
+The message is DONERES:
+
+
+Closing client socket on client side....
+
+
+Closing socket...
+
+
+
+
+
+
+
+
+--------
+UDP - When data/connection is lost:
+-------
+
+(This process repeats indefinitely)
+	- Attempts to receive message from server every 3 seconds. If no response within 3 seconds, the message is resent
+
+Client Side: (Debug Mode)
+User input: java RemoteBankUdp localhost:3004 Kevin CHUMBO deposit 12 -d
+Console result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+  DEBUG MODE INITIATED
+/~~~~~~~~~~~~~~~~~~~~~~~~~~~\
+
+
+
+
+Creating Socket...
+Socket created successfully...
+
+Authenticating user...
+
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+/--------------------------\
+Getting message from server....
+/--------------------------\
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+Reading message from server was unsuccessful....
+
+Attempting to resend original request to server...
+/--------------------------\
+Sending message to server....
+/--------------------------\
+Sending user authentication request to server...
+
+
+
+
+
+
+Error Messages: (Both are the same in TCP and UDP)
+
+Reason: Invalid number of arguments
+Result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/--------------------------\
+INCORRECT NUMBER OF ARGUMENTS!
+/--------------------------\
+EXITING...
+
+
+Reason: Invalid IP
+Result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/--------------------------\
+INVALID IP ADDRESS!
+/--------------------------\
+You must specify an ip address in the format of: x.x.x.x
+With x being in between 0 - 255.
+EXITING...
+
+
+
+Reason: Invalid Port
+Result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/--------------------------\
+INVALID PORT NUMBER!
+/--------------------------\
+You must specify a port number above 1023.
+EXITING...
+
+
+Reason: Invalid Username
+Result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+Username not found.
+
+
+Reason: Invalid Password
+Result:
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+Incorrect password.
+
+
+Reason: Invalid Bank Action
+Result:
+
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/--------------------------\
+INVALID BANK TRANSACTION COMMAND!
+/--------------------------\
+You must specify either 'deposit' or 'withdraw'.
+EXITING...
+
+
+Reason: Invalid Amount
+Result:
+
+
+/--------------------------\
+  Welcome to Bank of 3251!
+/--------------------------\
+/--------------------------\
+INVALID AMOUNT!
+/--------------------------\
+You must specify a valid number from 0-Infinity.
+EXITING...
+
